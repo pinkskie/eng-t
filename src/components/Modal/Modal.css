@@ -1,0 +1,87 @@
+@keyframes opacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dialog {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: opacity 0.5s;
+}
+.dialog-content {
+  border-radius: 0.65rem;
+  background-color: white;
+  height: 12rem;
+  width: 20rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.dialog-input {
+  width: 85%;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  transition: 0.2s ease;
+}
+
+.dialog-input:focus {
+  border: 1px solid black;
+}
+
+.dialog-input::placeholder {
+  color: black;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.text-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  letter-spacing: 0.44px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.accept-btn {
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 0.5rem 2rem;
+  border-radius: 999rem;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+}
+
+.confirm {
+  height: 5rem;
+  padding: 1rem 0;
+  justify-content: inherit;
+}

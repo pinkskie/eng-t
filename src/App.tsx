@@ -1,57 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import ListItem from "./components/ListItem/ListItem";
+import Modal from "./components/Modal/Modal";
+import { selectList } from "./features/listReducer";
+import "./App.css";
 
 function App() {
+  const [open, setOpen] = useState<boolean>(false);
+
+  const list = useSelector(selectList);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <div className="list">
+        <div className="list-items">
+          {list.length === 0 ? (
+            <p className="text">Список пуст</p>
+          ) : (
+            list.map((item) => <ListItem item={item} key={item.id} />)
+          )}
+        </div>
+        <button className="add-btn" onClick={handleClickOpen}>
+          Добавить
+        </button>
+      </div>
+
+      {open && <Modal onClose={handleClose} />}
+    </>
   );
 }
 
